@@ -8,21 +8,21 @@ namespace ShoppingCart.Domain
 
     public class Cart
     {
-        private List<OrderItem> _items;
+        private List<Item> _items;
 
         public Cart()
         {
-            _items = new List<OrderItem>();
+            _items = new List<Item>();
         }
 
         public string MailCliente { get; set; }
 
-        public IEnumerable<OrderItem> Items
+        public IEnumerable<Item> Items
         {
             get { return _items; }
         }
 
-        public void Add(OrderItem orderItem)
+        public void Add(Item orderItem)
         {
             _items.Add(orderItem);
         }
@@ -30,35 +30,33 @@ namespace ShoppingCart.Domain
         public decimal TotalAmount()
         {
             decimal total = 0m;
-            //Poner otra cosa otra, otra, 
-            foreach (OrderItem orderItem in Items)
+            foreach (Item item in Items)
             {
-                if (orderItem.Sku.StartsWith("U")) //Unidad
-                {
-                    total += orderItem.Quantity * 5m;
-                }
-                else if (orderItem.Sku.StartsWith("P")) //Peso
-                {
-                    // cantidad en gramos, el precio es por kg
-                    total += orderItem.Quantity * 4m / 1000;
-                } 
-                else if (orderItem.Sku.StartsWith("E")) //Espacial
-                { 
-                    // $1.40 cada uno; 3 por $4.00
-                    total += orderItem.Quantity * 1.4m;
-                    int grupodetres = orderItem.Quantity / 3;
-                    total -= grupodetres * 0.2m;
-                }
-                //otra mas
+                //if (orderItem.Sku.StartsWith("U")) //Unidad
+                //{
+                //    total += orderItem.Quantity * 5m;
+                //}
+                //else if (orderItem.Sku.StartsWith("P")) //Peso
+                //{
+                //    // cantidad en gramos, el precio es por kg
+                //    total += orderItem.Quantity * 4m / 1000;
+                //} 
+                //else if (orderItem.Sku.StartsWith("E")) //Espacial
+                //{ 
+                //    // $1.40 cada uno; 3 por $4.00
+                //    total += orderItem.Quantity * 1.4m;
+                //    int grupodetres = orderItem.Quantity / 3;
+                //    total -= grupodetres * 0.2m;
+                //}
+
                 // mas reglas
+
+
+                total += item.subtotal(total);
             }
 
             return total;
 
         }
-
     }
-
-
-
 }
