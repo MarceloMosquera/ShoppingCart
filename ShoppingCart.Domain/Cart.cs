@@ -30,7 +30,7 @@ namespace ShoppingCart.Domain
         public decimal TotalAmount()
         {
             decimal total = 0m;
-            //Poner otra cosa
+            //Poner otra cosa otra, otra, 
             foreach (OrderItem orderItem in Items)
             {
                 if (orderItem.Sku.StartsWith("U")) //Unidad
@@ -49,7 +49,7 @@ namespace ShoppingCart.Domain
                     int grupodetres = orderItem.Quantity / 3;
                     total -= grupodetres * 0.2m;
                 }
-
+                //otra mas
                 // mas reglas
             }
 
