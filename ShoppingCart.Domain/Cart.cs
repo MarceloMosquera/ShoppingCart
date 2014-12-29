@@ -30,6 +30,7 @@ namespace ShoppingCart.Domain
         public decimal TotalAmount()
         {
             decimal total = 0m;
+            //Poner otra cosa
             foreach (OrderItem orderItem in Items)
             {
                 if (orderItem.Sku.StartsWith("U")) //Unidad
